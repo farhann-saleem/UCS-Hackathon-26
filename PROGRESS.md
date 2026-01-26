@@ -10,11 +10,12 @@
 - [x] Step 7: Feedback API
 - [x] Step 8: Metrics Dashboard
 - [x] Step 9: Polish & Demo Prep
+- [x] Step 10: UI Redesign (Animated Landing Page + Chess Theme)
 
 ## DEMO READY
 
 ## Last Updated
-2026-01-26 17:50 UTC
+2026-01-26 19:30 UTC
 
 ## What's Working
 - **Backend:** All 3 APIs functional (scan, feedback, metrics)
@@ -23,12 +24,22 @@
   - SecretsDetector: 10 rules (API keys, passwords, tokens)
   - SQLInjectionDetector: 7 rules (f-strings, templates)
   - DangerousFunctionsDetector: 14 rules (eval, exec, pickle, innerHTML)
-- **Frontend:**
-  - Landing page with code input and language selector
-  - Results page with severity-colored flag cards
-  - Feedback buttons (Valid Issue / False Positive)
-  - Metrics dashboard with charts and before/after comparison
-- **Full Flow:** paste code → scan → review flags → submit feedback → see metrics improve
+- **Frontend (NEW UI):**
+  - Animated landing page with chess theme and professional design
+  - Background image with glass morphism effects
+  - Custom animations (slide-up, fade-in, hover-lift, pulse-glow)
+  - Dedicated /scan page with code input and language selector
+  - Results page with dark theme and severity-colored flag cards
+  - Feedback buttons (Valid Issue / False Positive) with dark styling
+  - Metrics dashboard with charts, animations, and before/after comparison
+  - Consistent navigation across all pages
+  - Custom logo and branding
+- **Full Flow:** landing → scan code → review flags → submit feedback → see metrics improve
+
+## Assets Required
+Place these files in `frontend/public/`:
+- `background.jpeg` - Dark chess-themed background image
+- `logo.png` - CheckMate logo
 
 ## Demo Data
 Run `python seed_demo.py` in backend/ to seed sample data:
@@ -60,25 +71,32 @@ python seed_demo.py
 
 ## Demo URLs
 - Landing: http://localhost:3000
+- Scan Code: http://localhost:3000/scan
 - Dashboard: http://localhost:3000/dashboard
 
 ## Demo Script
-1. Open http://localhost:3000
-2. Click "Load Sample" to load vulnerable Python code
-3. Click "Scan for Vulnerabilities"
-4. Review the flags (should find 5-6 issues)
-5. Click "Valid Issue" or "False Positive" on each flag
-6. Go to Dashboard to see:
+1. Open http://localhost:3000 (see animated landing page)
+2. Click "Start Scanning" or navigate to /scan
+3. Click "Load Sample Code" to load vulnerable Python code
+4. Click "Scan for Vulnerabilities"
+5. Review the flags (should find 5-6 issues)
+6. Click "Valid Issue" or "False Positive" on each flag
+7. Go to Dashboard to see:
    - Total scans, flags, feedback counts
-   - Before/After precision comparison
-   - Per-rule precision chart
+   - Before/After precision comparison (60% → 84.6%)
+   - Per-rule precision chart with dark theme
    - Detailed rule performance table
 
 ## Architecture
 ```
 Frontend (Next.js 14)          Backend (FastAPI)
 ┌─────────────────────┐        ┌─────────────────────┐
-│ / (Landing)         │───────>│ POST /api/scan      │
+│ / (Landing)         │        │                     │
+│   - Hero section    │        │                     │
+│   - Features grid   │        │                     │
+│   - Chess theme     │        │                     │
+├─────────────────────┤        │                     │
+│ /scan               │───────>│ POST /api/scan      │
 │   - CodeInput       │        │   - Run detectors   │
 │   - Language select │        │   - Save to DB      │
 ├─────────────────────┤        ├─────────────────────┤
@@ -100,6 +118,17 @@ Frontend (Next.js 14)          Backend (FastAPI)
                                └─────────────────────┘
 ```
 
+## UI Features
+- **Theme:** Dark black/grey with green accents
+- **Animations:**
+  - slide-up, slide-down, fade-in, scale-in
+  - pulse-glow on CTA buttons
+  - hover-lift on cards
+  - smooth transitions
+- **Glass Morphism:** Frosted glass effect on cards and nav
+- **Chess Pattern:** Subtle checkered overlay
+- **Responsive:** Mobile-friendly design
+
 ## File Changes Log
 | Time | File | Change |
 |------|------|--------|
@@ -116,4 +145,8 @@ Frontend (Next.js 14)          Backend (FastAPI)
 | 17:44 | components/MetricsChart.tsx | Recharts chart |
 | 17:45 | app/dashboard/page.tsx | Dashboard |
 | 17:48 | seed_demo.py | Demo data seeder |
-| 17:50 | PROGRESS.md | Final update |
+| 19:00 | globals.css | Dark theme + animations |
+| 19:10 | app/page.tsx | Animated landing page |
+| 19:15 | app/scan/page.tsx | New scan page |
+| 19:20 | All pages | Dark theme update |
+| 19:30 | PROGRESS.md | UI redesign complete |

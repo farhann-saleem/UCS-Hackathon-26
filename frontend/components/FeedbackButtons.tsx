@@ -42,14 +42,14 @@ export function FeedbackButtons({
 
   if (submittedVerdict) {
     return (
-      <div className="flex items-center gap-2 text-sm">
+      <div className="flex items-center gap-2 text-sm px-3 py-1.5 rounded-lg glass">
         {submittedVerdict === "valid" ? (
-          <span className="text-green-600 flex items-center gap-1">
+          <span className="text-green-400 flex items-center gap-1">
             <CheckCircle className="h-4 w-4" />
             Confirmed valid
           </span>
         ) : (
-          <span className="text-orange-600 flex items-center gap-1">
+          <span className="text-orange-400 flex items-center gap-1">
             <XCircle className="h-4 w-4" />
             Marked as false positive
           </span>
@@ -65,7 +65,7 @@ export function FeedbackButtons({
         size="sm"
         onClick={() => handleFeedback("valid")}
         disabled={disabled || isSubmitting}
-        className="text-green-600 border-green-600 hover:bg-green-50"
+        className="text-green-400 border-green-500/30 hover:bg-green-500/10 hover:text-green-300 hover:border-green-500/50"
       >
         {isSubmitting ? (
           <Loader2 className="h-4 w-4 animate-spin" />
@@ -81,7 +81,7 @@ export function FeedbackButtons({
         size="sm"
         onClick={() => handleFeedback("false_positive")}
         disabled={disabled || isSubmitting}
-        className="text-orange-600 border-orange-600 hover:bg-orange-50"
+        className="text-orange-400 border-orange-500/30 hover:bg-orange-500/10 hover:text-orange-300 hover:border-orange-500/50"
       >
         {isSubmitting ? (
           <Loader2 className="h-4 w-4 animate-spin" />
