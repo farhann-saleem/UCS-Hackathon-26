@@ -2,7 +2,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
 export interface ScanRequest {
   code: string;
-  language: "python" | "javascript";
+  language: "python" | "javascript" | "typescript" | "html" | "css";
 }
 
 export interface Flag {
@@ -52,6 +52,31 @@ export interface MetricsResponse {
   total_flags: number;
   total_feedback: number;
   rules: RuleMetric[];
+}
+
+export interface ScanHistoryItem {
+  scan_id: string;
+  code: string;
+  language: string;
+  name?: string;
+  created_at: string;
+  flag_count: number;
+  code_preview: string;
+}
+
+export interface ScanHistoryResponse {
+  scans: ScanHistoryItem[];
+  total: number;
+}
+
+export interface UpdateScanNameRequest {
+  name: string;
+}
+
+export interface UpdateScanNameResponse {
+  success: boolean;
+  scan_id: string;
+  name: string;
 }
 
 export async function scanCode(request: ScanRequest): Promise<ScanResponse> {
@@ -113,6 +138,40 @@ export async function getScanResults(scanId: string): Promise<ScanResponse> {
 
   if (!response.ok) {
     throw new Error(`Failed to fetch scan results: ${response.statusText}`);
+  }
+
+  return response.json();
+}
+
+export async function getScanHistory(): Promise<ScanHistoryResponse> {
+  const response = await fetch(`${API_URL}/api/scans`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch scan history: ${response.statusText}`);
+  }
+
+  return response.json();
+}
+
+export async function updateScanName(
+  scanId: string,
+  name: string
+): Promise<UpdateScanNameResponse> {
+  const response = await fetch(`${API_URL}/api/scan/${scanId}/name`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ name }),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to update scan name: ${response.statusText}`);
   }
 
   return response.json();

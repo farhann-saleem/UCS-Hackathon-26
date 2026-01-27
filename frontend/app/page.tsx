@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { Footer } from "@/components/Footer";
 import {
   Shield,
   Code,
@@ -77,7 +78,7 @@ export default function LandingPage() {
 
   const stats = [
     { value: "31+", label: "Detection Rules" },
-    { value: "3", label: "Threat Categories" },
+    { value: "7", label: "Languages Supported" },
     { value: "85%", label: "Precision Rate" },
     { value: "<1s", label: "Scan Time" },
   ];
@@ -127,10 +128,22 @@ export default function LandingPage() {
                 Scan Code
               </Link>
               <Link
+                href="/scans"
+                className="text-gray-300 hover:text-white transition-colors hidden md:block"
+              >
+                Scans
+              </Link>
+              <Link
                 href="/dashboard"
                 className="text-gray-300 hover:text-white transition-colors hidden md:block"
               >
                 Dashboard
+              </Link>
+              <Link
+                href="/learn"
+                className="text-gray-300 hover:text-white transition-colors hidden md:block"
+              >
+                Learn
               </Link>
               <Link href="/scan">
                 <Button className="bg-green-500 hover:bg-green-600 text-black font-semibold px-6 animate-glow-pulse">
@@ -149,9 +162,8 @@ export default function LandingPage() {
           <div className="max-w-5xl mx-auto text-center">
             {/* Badge */}
             <div
-              className={`inline-flex items-center gap-2 px-4 py-2 rounded-full glass-grey mb-8 ${
-                isVisible ? "animate-scale-in" : "opacity-0"
-              }`}
+              className={`inline-flex items-center gap-2 px-4 py-2 rounded-full glass-grey mb-8 ${isVisible ? "animate-scale-in" : "opacity-0"
+                }`}
             >
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
               <span className="text-sm text-gray-300">Human-in-the-Loop Security</span>
@@ -159,9 +171,8 @@ export default function LandingPage() {
 
             {/* Main Headline */}
             <h1
-              className={`text-5xl md:text-7xl font-bold text-white mb-6 leading-tight ${
-                isVisible ? "animate-slide-up" : "opacity-0"
-              }`}
+              className={`text-5xl md:text-7xl font-bold text-white mb-6 leading-tight ${isVisible ? "animate-slide-up" : "opacity-0"
+                }`}
             >
               Secure Your Code
               <br />
@@ -172,9 +183,8 @@ export default function LandingPage() {
 
             {/* Subheadline */}
             <p
-              className={`text-xl md:text-2xl text-gray-400 mb-10 max-w-3xl mx-auto ${
-                isVisible ? "animate-slide-up delay-200" : "opacity-0"
-              }`}
+              className={`text-xl md:text-2xl text-gray-400 mb-10 max-w-3xl mx-auto ${isVisible ? "animate-slide-up delay-200" : "opacity-0"
+                }`}
             >
               Every grandmaster protects their king. Protect your codebase with AI-powered
               vulnerability detection enhanced by human intelligence.
@@ -182,9 +192,8 @@ export default function LandingPage() {
 
             {/* CTA Buttons */}
             <div
-              className={`flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 ${
-                isVisible ? "animate-slide-up delay-300" : "opacity-0"
-              }`}
+              className={`flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 ${isVisible ? "animate-slide-up delay-300" : "opacity-0"
+                }`}
             >
               <Link href="/scan">
                 <Button
@@ -210,9 +219,8 @@ export default function LandingPage() {
 
             {/* Stats */}
             <div
-              className={`grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto ${
-                isVisible ? "animate-fade-in delay-500" : "opacity-0"
-              }`}
+              className={`grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto ${isVisible ? "animate-fade-in delay-500" : "opacity-0"
+                }`}
             >
               {stats.map((stat, index) => (
                 <div key={index} className="glass-grey rounded-xl p-4 hover-lift hover-scale">
@@ -363,6 +371,7 @@ export default function LandingPage() {
           </div>
         </div>
       </footer>
+      <Footer />
     </main>
   );
 }

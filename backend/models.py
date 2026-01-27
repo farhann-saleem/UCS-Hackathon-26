@@ -6,24 +6,29 @@ from datetime import datetime
 # Request models
 class ScanRequest(BaseModel):
     code: str = Field(..., min_length=1, description="Code to scan")
-    language: Literal["python", "javascript"] = Field(..., description="Programming language")
+    language: Literal["python", "javascript"] = Field(
+        ..., description="Programming language"
+    )
 
 
 class FeedbackRequest(BaseModel):
     scan_id: str = Field(..., description="ID of the scan")
     flag_id: str = Field(..., description="ID of the flag")
-    verdict: Literal["valid", "false_positive"] = Field(..., description="Human verdict")
+    verdict: Literal["valid", "false_positive"] = Field(
+        ..., description="Human verdict"
+    )
 
 
 # Response models
 class Flag(BaseModel):
     flag_id: str
     rule_id: str
-    severity: Literal["critical", "high", "medium", "low"]
+    severity: Literal["critical", "high", "medium", "low", "danger", "high_risk"]
     message: str
     line_number: int
     line_content: str
     suggestion: Optional[str] = None
+    feedback_status: Optional[str] = None  # "valid" or "false_positive" if reviewed
 
 
 class ScanResponse(BaseModel):

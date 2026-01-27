@@ -20,23 +20,36 @@ interface FlagCardProps {
   onFeedbackSubmitted: (flagId: string) => void;
 }
 
-const severityConfig = {
+const severityConfig: Record<string, {
+  variant: "critical" | "danger" | "high_risk";
+  icon: typeof AlertTriangle;
+  color: string;
+  bgColor: string;
+  borderColor: string;
+}> = {
   critical: {
-    variant: "critical" as const,
+    variant: "critical",
     icon: AlertTriangle,
     color: "text-red-500",
     bgColor: "bg-red-500/10",
     borderColor: "border-red-500/30",
   },
   danger: {
-    variant: "danger" as const,
+    variant: "danger",
     icon: AlertTriangle,
     color: "text-orange-500",
     bgColor: "bg-orange-500/10",
     borderColor: "border-orange-500/30",
   },
   high_risk: {
-    variant: "high_risk" as const,
+    variant: "high_risk",
+    icon: AlertTriangle,
+    color: "text-yellow-500",
+    bgColor: "bg-yellow-500/10",
+    borderColor: "border-yellow-500/30",
+  },
+  high: {
+    variant: "high_risk",
     icon: AlertTriangle,
     color: "text-yellow-500",
     bgColor: "bg-yellow-500/10",
@@ -49,7 +62,7 @@ export function FlagCard({ flag, onFeedbackSubmitted }: FlagCardProps) {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const config = severityConfig[flag.severity];
+  const config = severityConfig[flag.severity] || severityConfig.high_risk;
   const SeverityIcon = config.icon;
 
   const handleFeedback = async (verdict: "valid" | "false_positive") => {

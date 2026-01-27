@@ -1,1 +1,11 @@
-{"entries": []}
+{
+  "entries": [
+    {
+      "flag_id": "JS_EVAL_4",
+      "rule_id": "JS_EVAL",
+      "verdict": "valid",
+      "matched_text": "eval(",
+      "timestamp": "2026-01-27T21:15:50.280834"
+    }
+  ]
+}

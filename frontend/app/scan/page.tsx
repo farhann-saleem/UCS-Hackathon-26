@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Footer } from "@/components/Footer";
 import {
   Shield,
   Code,
@@ -40,7 +41,7 @@ result = eval(user_input)
 export default function ScanPage() {
   const router = useRouter();
   const [code, setCode] = useState("");
-  const [language, setLanguage] = useState<"python" | "javascript">("python");
+  const [language, setLanguage] = useState<"python" | "javascript" | "typescript" | "html" | "css">("python");
   const [isScanning, setIsScanning] = useState(false);
 
   const handleScan = async () => {
@@ -102,10 +103,22 @@ export default function ScanPage() {
                 Scan Code
               </Link>
               <Link
+                href="/scans"
+                className="text-gray-300 hover:text-white transition-colors"
+              >
+                Scans
+              </Link>
+              <Link
                 href="/dashboard"
                 className="text-gray-300 hover:text-white transition-colors"
               >
                 Dashboard
+              </Link>
+              <Link
+                href="/learn"
+                className="text-gray-300 hover:text-white transition-colors"
+              >
+                Learn
               </Link>
             </div>
           </div>
@@ -137,38 +150,35 @@ export default function ScanPage() {
                 Code Scanner
               </CardTitle>
               <CardDescription className="text-gray-400">
-                Supports Python and JavaScript. Our engine scans for 31+ security patterns.
+                Supports 7 languages: Python, JavaScript, TypeScript, HTML, and CSS. Scans for 31+ security patterns.
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               {/* Language Selector */}
-              <div className="flex items-center gap-4">
-                <span className="text-sm text-gray-400">Language:</span>
-                <div className="flex gap-2">
-                  <Button
-                    variant={language === "python" ? "default" : "outline"}
-                    size="sm"
-                    onClick={() => setLanguage("python")}
-                    className={
-                      language === "python"
-                        ? "bg-green-500 hover:bg-green-600 text-black"
-                        : "border-gray-600 text-gray-300 hover:bg-white/10"
-                    }
-                  >
-                    Python
-                  </Button>
-                  <Button
-                    variant={language === "javascript" ? "default" : "outline"}
-                    size="sm"
-                    onClick={() => setLanguage("javascript")}
-                    className={
-                      language === "javascript"
-                        ? "bg-green-500 hover:bg-green-600 text-black"
-                        : "border-gray-600 text-gray-300 hover:bg-white/10"
-                    }
-                  >
-                    JavaScript
-                  </Button>
+              <div className="space-y-3">
+                <span className="text-sm text-gray-400 block">Select Language:</span>
+                <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
+                  {[
+                    { id: "python", label: "Python" },
+                    { id: "javascript", label: "JavaScript" },
+                    { id: "typescript", label: "TypeScript" },
+                    { id: "html", label: "HTML" },
+                    { id: "css", label: "CSS" },
+                  ].map((lang) => (
+                    <Button
+                      key={lang.id}
+                      variant={language === lang.id ? "default" : "outline"}
+                      size="sm"
+                      onClick={() => setLanguage(lang.id as any)}
+                      className={
+                        language === lang.id
+                          ? "bg-green-500 hover:bg-green-600 text-black font-semibold"
+                          : "border-gray-600 text-gray-300 hover:bg-white/10"
+                      }
+                    >
+                      {lang.label}
+                    </Button>
+                  ))}
                 </div>
               </div>
 
@@ -245,6 +255,7 @@ export default function ScanPage() {
           </div>
         </div>
       </div>
+      <Footer />
     </main>
   );
 }

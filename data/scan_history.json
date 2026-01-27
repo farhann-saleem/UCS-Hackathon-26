@@ -123,6 +123,684 @@
         "danger": 4,
         "high_risk": 1
       }
+    },
+    {
+      "scan_id": "fe33a4a9",
+      "name": "vulnerable_js.js",
+      "timestamp": "2026-01-27T19:56:59.429758",
+      "file_scanned": "samples/vulnerable_js.js",
+      "total_flags": 2,
+      "flags": [
+        {
+          "flag_id": "JS_EVAL_4",
+          "rule_id": "JS_EVAL",
+          "severity": "critical",
+          "line_number": 4,
+          "line_content": "eval(\"console.log('dangerous')\");",
+          "matched_text": "eval(",
+          "explanation": "eval() detected. Never execute untrusted code.",
+          "suggested_fix": "Review dangerous_functions vulnerability at line 4",
+          "file_path": "samples/vulnerable_js.js"
+        },
+        {
+          "flag_id": "JS_INNER_HTML_ASSIGN_5",
+          "rule_id": "JS_INNER_HTML_ASSIGN",
+          "severity": "high",
+          "line_number": 5,
+          "line_content": "document.innerHTML = userInput;",
+          "matched_text": ".innerHTML = ",
+          "explanation": "innerHTML assignment detected. Use textContent for plain text.",
+          "suggested_fix": "Review dangerous_functions vulnerability at line 5",
+          "file_path": "samples/vulnerable_js.js"
+        }
+      ],
+      "summary": {
+        "critical": 1,
+        "danger": 0,
+        "high_risk": 0
+      }
+    },
+    {
+      "scan_id": "d2b74c1d",
+      "name": "vulnerable_ts.ts",
+      "timestamp": "2026-01-27T19:57:04.218310",
+      "file_scanned": "samples/vulnerable_ts.ts",
+      "total_flags": 1,
+      "flags": [
+        {
+          "flag_id": "TS_EVAL_4",
+          "rule_id": "TS_EVAL",
+          "severity": "critical",
+          "line_number": 4,
+          "line_content": "setTimeout(eval(userCode), 1000);",
+          "matched_text": "eval(",
+          "explanation": "eval() detected. Never execute untrusted code.",
+          "suggested_fix": "Review dangerous_functions vulnerability at line 4",
+          "file_path": "samples/vulnerable_ts.ts"
+        }
+      ],
+      "summary": {
+        "critical": 1,
+        "danger": 0,
+        "high_risk": 0
+      }
+    },
+    {
+      "scan_id": "e3372e15",
+      "name": "samples",
+      "timestamp": "2026-01-27T19:57:16.484629",
+      "file_scanned": "samples",
+      "total_flags": 10,
+      "flags": [
+        {
+          "flag_id": "PY_SECRET_OPENAI_KEY_7",
+          "rule_id": "PY_SECRET_OPENAI_KEY",
+          "severity": "critical",
+          "line_number": 7,
+          "line_content": "api_key = \"sk-1234567890abcdefghijklmnopqrstuvwxyz\"",
+          "matched_text": "sk-1234567890abcdefghijklmnopqrstuvwxyz",
+          "explanation": "OpenAI API Key detected. Never hardcode secrets in source code.",
+          "suggested_fix": "Review secrets vulnerability at line 7",
+          "file_path": "samples/vulnerable_1.py"
+        },
+        {
+          "flag_id": "PY_SECRET_HARDCODED_PASSWORD_10",
+          "rule_id": "PY_SECRET_HARDCODED_PASSWORD",
+          "severity": "critical",
+          "line_number": 10,
+          "line_content": "password = \"admin123\"",
+          "matched_text": "password = \"admin123\"",
+          "explanation": "Hardcoded password detected. Use environment variables instead.",
+          "suggested_fix": "Review secrets vulnerability at line 10",
+          "file_path": "samples/vulnerable_1.py"
+        },
+        {
+          "flag_id": "PY_SECRET_HARDCODED_PASSWORD_11",
+          "rule_id": "PY_SECRET_HARDCODED_PASSWORD",
+          "severity": "critical",
+          "line_number": 11,
+          "line_content": "db_password = \"supersecret123\"",
+          "matched_text": "password = \"supersecret123\"",
+          "explanation": "Hardcoded password detected. Use environment variables instead.",
+          "suggested_fix": "Review secrets vulnerability at line 11",
+          "file_path": "samples/vulnerable_1.py"
+        },
+        {
+          "flag_id": "PY_EVAL_EXEC_39",
+          "rule_id": "PY_EVAL_EXEC",
+          "severity": "critical",
+          "line_number": 39,
+          "line_content": "    return eval(expr)",
+          "matched_text": "eval(",
+          "explanation": "eval() or exec() detected. Never execute untrusted input.",
+          "suggested_fix": "Review dangerous_functions vulnerability at line 39",
+          "file_path": "samples/vulnerable_1.py"
+        },
+        {
+          "flag_id": "PY_EVAL_EXEC_45",
+          "rule_id": "PY_EVAL_EXEC",
+          "severity": "critical",
+          "line_number": 45,
+          "line_content": "    exec(code)",
+          "matched_text": "exec(",
+          "explanation": "eval() or exec() detected. Never execute untrusted input.",
+          "suggested_fix": "Review dangerous_functions vulnerability at line 45",
+          "file_path": "samples/vulnerable_1.py"
+        },
+        {
+          "flag_id": "PY_PICKLE_LOADS_33",
+          "rule_id": "PY_PICKLE_LOADS",
+          "severity": "critical",
+          "line_number": 33,
+          "line_content": "    return pickle.loads(data)",
+          "matched_text": "pickle.loads(",
+          "explanation": "pickle.loads() detected. Use json instead for untrusted data.",
+          "suggested_fix": "Review dangerous_functions vulnerability at line 33",
+          "file_path": "samples/vulnerable_1.py"
+        },
+        {
+          "flag_id": "PY_SQL_FSTRING_20",
+          "rule_id": "PY_SQL_FSTRING",
+          "severity": "high",
+          "line_number": 20,
+          "line_content": "    cursor.execute(f\"SELECT * FROM users WHERE id = {user_id}\")",
+          "matched_text": "execute(f\"SELECT * FROM users WHERE id = {user_id}\"",
+          "explanation": "SQL query using f-string detected. Use parameterized queries.",
+          "suggested_fix": "Review sql_injection vulnerability at line 20",
+          "file_path": "samples/vulnerable_1.py"
+        },
+        {
+          "flag_id": "TS_EVAL_4",
+          "rule_id": "TS_EVAL",
+          "severity": "critical",
+          "line_number": 4,
+          "line_content": "setTimeout(eval(userCode), 1000);",
+          "matched_text": "eval(",
+          "explanation": "eval() detected. Never execute untrusted code.",
+          "suggested_fix": "Review dangerous_functions vulnerability at line 4",
+          "file_path": "samples/vulnerable_ts.ts"
+        },
+        {
+          "flag_id": "JS_EVAL_4",
+          "rule_id": "JS_EVAL",
+          "severity": "critical",
+          "line_number": 4,
+          "line_content": "eval(\"console.log('dangerous')\");",
+          "matched_text": "eval(",
+          "explanation": "eval() detected. Never execute untrusted code.",
+          "suggested_fix": "Review dangerous_functions vulnerability at line 4",
+          "file_path": "samples/vulnerable_js.js"
+        },
+        {
+          "flag_id": "JS_INNER_HTML_ASSIGN_5",
+          "rule_id": "JS_INNER_HTML_ASSIGN",
+          "severity": "high",
+          "line_number": 5,
+          "line_content": "document.innerHTML = userInput;",
+          "matched_text": ".innerHTML = ",
+          "explanation": "innerHTML assignment detected. Use textContent for plain text.",
+          "suggested_fix": "Review dangerous_functions vulnerability at line 5",
+          "file_path": "samples/vulnerable_js.js"
+        }
+      ],
+      "summary": {
+        "critical": 8,
+        "danger": 0,
+        "high_risk": 0
+      }
+    },
+    {
+      "scan_id": "a8b0b825",
+      "name": "vulnerable.html",
+      "timestamp": "2026-01-27T20:03:33.997689",
+      "file_scanned": "samples/vulnerable.html",
+      "total_flags": 2,
+      "flags": [
+        {
+          "flag_id": "HTML_INSECURE_SCRIPT_9",
+          "rule_id": "HTML_INSECURE_SCRIPT",
+          "severity": "high",
+          "line_number": 9,
+          "line_content": "    <script src=\"http://example.com/script.js\"></script>",
+          "matched_text": "<script src=\"http://example.com/script.js\"",
+          "explanation": "Script tag using HTTP detected. Use HTTPS instead.",
+          "suggested_fix": "Review dangerous_functions vulnerability at line 9",
+          "file_path": "samples/vulnerable.html"
+        },
+        {
+          "flag_id": "HTML_INSECURE_IFRAME_10",
+          "rule_id": "HTML_INSECURE_IFRAME",
+          "severity": "high",
+          "line_number": 10,
+          "line_content": "    <iframe src=\"http://unsafe.com/page.html\"></iframe>",
+          "matched_text": "<iframe src=\"http://unsafe.com/page.html\"",
+          "explanation": "iframe using HTTP detected. Use HTTPS instead.",
+          "suggested_fix": "Review dangerous_functions vulnerability at line 10",
+          "file_path": "samples/vulnerable.html"
+        }
+      ],
+      "summary": {
+        "critical": 0,
+        "danger": 0,
+        "high_risk": 0
+      }
+    },
+    {
+      "scan_id": "3e19f9d0",
+      "name": "vulnerable.css",
+      "timestamp": "2026-01-27T20:03:38.086579",
+      "file_scanned": "samples/vulnerable.css",
+      "total_flags": 0,
+      "flags": [],
+      "summary": {
+        "critical": 0,
+        "danger": 0,
+        "high_risk": 0
+      }
+    },
+    {
+      "scan_id": "8414412a",
+      "name": "vulnerable.css",
+      "timestamp": "2026-01-27T20:03:53.314113",
+      "file_scanned": "samples/vulnerable.css",
+      "total_flags": 0,
+      "flags": [],
+      "summary": {
+        "critical": 0,
+        "danger": 0,
+        "high_risk": 0
+      }
+    },
+    {
+      "scan_id": "d1e8511c",
+      "name": "vulnerable.css",
+      "timestamp": "2026-01-27T20:04:03.822547",
+      "file_scanned": "samples/vulnerable.css",
+      "total_flags": 1,
+      "flags": [
+        {
+          "flag_id": "CSS_INSECURE_IMPORT_8",
+          "rule_id": "CSS_INSECURE_IMPORT",
+          "severity": "high",
+          "line_number": 8,
+          "line_content": "@import url(\"http://unsafe-fonts.com/style.css\");",
+          "matched_text": "@import url(\"http://u",
+          "explanation": "CSS import using HTTP detected. Use HTTPS instead.",
+          "suggested_fix": "Review dangerous_functions vulnerability at line 8",
+          "file_path": "samples/vulnerable.css"
+        }
+      ],
+      "summary": {
+        "critical": 0,
+        "danger": 0,
+        "high_risk": 0
+      }
+    },
+    {
+      "scan_id": "9c1bc7a0",
+      "name": "vulnerable.html",
+      "timestamp": "2026-01-27T20:04:07.327009",
+      "file_scanned": "samples/vulnerable.html",
+      "total_flags": 2,
+      "flags": [
+        {
+          "flag_id": "HTML_INSECURE_SCRIPT_9",
+          "rule_id": "HTML_INSECURE_SCRIPT",
+          "severity": "high",
+          "line_number": 9,
+          "line_content": "    <script src=\"http://example.com/script.js\"></script>",
+          "matched_text": "<script src=\"http://example.com/script.js\"",
+          "explanation": "Script tag using HTTP detected. Use HTTPS instead.",
+          "suggested_fix": "Review dangerous_functions vulnerability at line 9",
+          "file_path": "samples/vulnerable.html"
+        },
+        {
+          "flag_id": "HTML_INSECURE_IFRAME_10",
+          "rule_id": "HTML_INSECURE_IFRAME",
+          "severity": "high",
+          "line_number": 10,
+          "line_content": "    <iframe src=\"http://unsafe.com/page.html\"></iframe>",
+          "matched_text": "<iframe src=\"http://unsafe.com/page.html\"",
+          "explanation": "iframe using HTTP detected. Use HTTPS instead.",
+          "suggested_fix": "Review dangerous_functions vulnerability at line 10",
+          "file_path": "samples/vulnerable.html"
+        }
+      ],
+      "summary": {
+        "critical": 0,
+        "danger": 0,
+        "high_risk": 0
+      }
+    },
+    {
+      "scan_id": "3eded1c2",
+      "name": "vulnerable.html",
+      "timestamp": "2026-01-27T20:04:56.876121",
+      "file_scanned": "samples/vulnerable.html",
+      "total_flags": 2,
+      "flags": [
+        {
+          "flag_id": "HTML_INSECURE_SCRIPT_9",
+          "rule_id": "HTML_INSECURE_SCRIPT",
+          "severity": "high",
+          "line_number": 9,
+          "line_content": "    <script src=\"http://example.com/script.js\"></script>",
+          "matched_text": "<script src=\"http://example.com/script.js\"",
+          "explanation": "Script tag using HTTP detected. Use HTTPS instead.",
+          "suggested_fix": "Review dangerous_functions vulnerability at line 9",
+          "file_path": "samples/vulnerable.html"
+        },
+        {
+          "flag_id": "HTML_INSECURE_IFRAME_10",
+          "rule_id": "HTML_INSECURE_IFRAME",
+          "severity": "high",
+          "line_number": 10,
+          "line_content": "    <iframe src=\"http://unsafe.com/page.html\"></iframe>",
+          "matched_text": "<iframe src=\"http://unsafe.com/page.html\"",
+          "explanation": "iframe using HTTP detected. Use HTTPS instead.",
+          "suggested_fix": "Review dangerous_functions vulnerability at line 10",
+          "file_path": "samples/vulnerable.html"
+        }
+      ],
+      "summary": {
+        "critical": 0,
+        "danger": 0,
+        "high_risk": 0
+      }
+    },
+    {
+      "scan_id": "e8a2e78a",
+      "name": "vulnerable.html",
+      "timestamp": "2026-01-27T20:05:26.505323",
+      "file_scanned": "samples/vulnerable.html",
+      "total_flags": 3,
+      "flags": [
+        {
+          "flag_id": "HTML_COMMENT_SECRETS_5",
+          "rule_id": "HTML_COMMENT_SECRETS",
+          "severity": "critical",
+          "line_number": 5,
+          "line_content": "    <!-- sk-proj-abc123def456ghi789jkl0123456789 -->",
+          "matched_text": "<!-- sk-proj-abc123def456ghi789jkl0123456789 -->",
+          "explanation": "API Key detected in HTML comment. Remove secrets from comments.",
+          "suggested_fix": "Review secrets vulnerability at line 5",
+          "file_path": "samples/vulnerable.html"
+        },
+        {
+          "flag_id": "HTML_INSECURE_SCRIPT_9",
+          "rule_id": "HTML_INSECURE_SCRIPT",
+          "severity": "high",
+          "line_number": 9,
+          "line_content": "    <script src=\"http://example.com/script.js\"></script>",
+          "matched_text": "<script src=\"http://example.com/script.js\"",
+          "explanation": "Script tag using HTTP detected. Use HTTPS instead.",
+          "suggested_fix": "Review dangerous_functions vulnerability at line 9",
+          "file_path": "samples/vulnerable.html"
+        },
+        {
+          "flag_id": "HTML_INSECURE_IFRAME_10",
+          "rule_id": "HTML_INSECURE_IFRAME",
+          "severity": "high",
+          "line_number": 10,
+          "line_content": "    <iframe src=\"http://unsafe.com/page.html\"></iframe>",
+          "matched_text": "<iframe src=\"http://unsafe.com/page.html\"",
+          "explanation": "iframe using HTTP detected. Use HTTPS instead.",
+          "suggested_fix": "Review dangerous_functions vulnerability at line 10",
+          "file_path": "samples/vulnerable.html"
+        }
+      ],
+      "summary": {
+        "critical": 1,
+        "danger": 0,
+        "high_risk": 0
+      }
+    },
+    {
+      "scan_id": "1dca5952",
+      "name": "vulnerable.css",
+      "timestamp": "2026-01-27T20:05:26.722245",
+      "file_scanned": "samples/vulnerable.css",
+      "total_flags": 2,
+      "flags": [
+        {
+          "flag_id": "CSS_COMMENT_SECRETS_1",
+          "rule_id": "CSS_COMMENT_SECRETS",
+          "severity": "critical",
+          "line_number": 1,
+          "line_content": "/* Main stylesheet */",
+          "matched_text": "/* Main stylesheet */\n/* sk-proj-abc123def456ghi789jkl012345",
+          "explanation": "API Key detected in CSS comment. Remove secrets from comments.",
+          "suggested_fix": "Review secrets vulnerability at line 1",
+          "file_path": "samples/vulnerable.css"
+        },
+        {
+          "flag_id": "CSS_INSECURE_IMPORT_8",
+          "rule_id": "CSS_INSECURE_IMPORT",
+          "severity": "high",
+          "line_number": 8,
+          "line_content": "@import url(\"http://unsafe-fonts.com/style.css\");",
+          "matched_text": "@import url(\"http://u",
+          "explanation": "CSS import using HTTP detected. Use HTTPS instead.",
+          "suggested_fix": "Review dangerous_functions vulnerability at line 8",
+          "file_path": "samples/vulnerable.css"
+        }
+      ],
+      "summary": {
+        "critical": 1,
+        "danger": 0,
+        "high_risk": 0
+      }
+    },
+    {
+      "scan_id": "5cbbf65e",
+      "name": "samples",
+      "timestamp": "2026-01-27T20:05:30.116776",
+      "file_scanned": "samples",
+      "total_flags": 15,
+      "flags": [
+        {
+          "flag_id": "PY_SECRET_OPENAI_KEY_7",
+          "rule_id": "PY_SECRET_OPENAI_KEY",
+          "severity": "critical",
+          "line_number": 7,
+          "line_content": "api_key = \"sk-1234567890abcdefghijklmnopqrstuvwxyz\"",
+          "matched_text": "sk-1234567890abcdefghijklmnopqrstuvwxyz",
+          "explanation": "OpenAI API Key detected. Never hardcode secrets in source code.",
+          "suggested_fix": "Review secrets vulnerability at line 7",
+          "file_path": "samples/vulnerable_1.py"
+        },
+        {
+          "flag_id": "PY_SECRET_HARDCODED_PASSWORD_10",
+          "rule_id": "PY_SECRET_HARDCODED_PASSWORD",
+          "severity": "critical",
+          "line_number": 10,
+          "line_content": "password = \"admin123\"",
+          "matched_text": "password = \"admin123\"",
+          "explanation": "Hardcoded password detected. Use environment variables instead.",
+          "suggested_fix": "Review secrets vulnerability at line 10",
+          "file_path": "samples/vulnerable_1.py"
+        },
+        {
+          "flag_id": "PY_SECRET_HARDCODED_PASSWORD_11",
+          "rule_id": "PY_SECRET_HARDCODED_PASSWORD",
+          "severity": "critical",
+          "line_number": 11,
+          "line_content": "db_password = \"supersecret123\"",
+          "matched_text": "password = \"supersecret123\"",
+          "explanation": "Hardcoded password detected. Use environment variables instead.",
+          "suggested_fix": "Review secrets vulnerability at line 11",
+          "file_path": "samples/vulnerable_1.py"
+        },
+        {
+          "flag_id": "PY_EVAL_EXEC_39",
+          "rule_id": "PY_EVAL_EXEC",
+          "severity": "critical",
+          "line_number": 39,
+          "line_content": "    return eval(expr)",
+          "matched_text": "eval(",
+          "explanation": "eval() or exec() detected. Never execute untrusted input.",
+          "suggested_fix": "Review dangerous_functions vulnerability at line 39",
+          "file_path": "samples/vulnerable_1.py"
+        },
+        {
+          "flag_id": "PY_EVAL_EXEC_45",
+          "rule_id": "PY_EVAL_EXEC",
+          "severity": "critical",
+          "line_number": 45,
+          "line_content": "    exec(code)",
+          "matched_text": "exec(",
+          "explanation": "eval() or exec() detected. Never execute untrusted input.",
+          "suggested_fix": "Review dangerous_functions vulnerability at line 45",
+          "file_path": "samples/vulnerable_1.py"
+        },
+        {
+          "flag_id": "PY_PICKLE_LOADS_33",
+          "rule_id": "PY_PICKLE_LOADS",
+          "severity": "critical",
+          "line_number": 33,
+          "line_content": "    return pickle.loads(data)",
+          "matched_text": "pickle.loads(",
+          "explanation": "pickle.loads() detected. Use json instead for untrusted data.",
+          "suggested_fix": "Review dangerous_functions vulnerability at line 33",
+          "file_path": "samples/vulnerable_1.py"
+        },
+        {
+          "flag_id": "PY_SQL_FSTRING_20",
+          "rule_id": "PY_SQL_FSTRING",
+          "severity": "high",
+          "line_number": 20,
+          "line_content": "    cursor.execute(f\"SELECT * FROM users WHERE id = {user_id}\")",
+          "matched_text": "execute(f\"SELECT * FROM users WHERE id = {user_id}\"",
+          "explanation": "SQL query using f-string detected. Use parameterized queries.",
+          "suggested_fix": "Review sql_injection vulnerability at line 20",
+          "file_path": "samples/vulnerable_1.py"
+        },
+        {
+          "flag_id": "HTML_COMMENT_SECRETS_5",
+          "rule_id": "HTML_COMMENT_SECRETS",
+          "severity": "critical",
+          "line_number": 5,
+          "line_content": "    <!-- sk-proj-abc123def456ghi789jkl0123456789 -->",
+          "matched_text": "<!-- sk-proj-abc123def456ghi789jkl0123456789 -->",
+          "explanation": "API Key detected in HTML comment. Remove secrets from comments.",
+          "suggested_fix": "Review secrets vulnerability at line 5",
+          "file_path": "samples/vulnerable.html"
+        },
+        {
+          "flag_id": "HTML_INSECURE_SCRIPT_9",
+          "rule_id": "HTML_INSECURE_SCRIPT",
+          "severity": "high",
+          "line_number": 9,
+          "line_content": "    <script src=\"http://example.com/script.js\"></script>",
+          "matched_text": "<script src=\"http://example.com/script.js\"",
+          "explanation": "Script tag using HTTP detected. Use HTTPS instead.",
+          "suggested_fix": "Review dangerous_functions vulnerability at line 9",
+          "file_path": "samples/vulnerable.html"
+        },
+        {
+          "flag_id": "HTML_INSECURE_IFRAME_10",
+          "rule_id": "HTML_INSECURE_IFRAME",
+          "severity": "high",
+          "line_number": 10,
+          "line_content": "    <iframe src=\"http://unsafe.com/page.html\"></iframe>",
+          "matched_text": "<iframe src=\"http://unsafe.com/page.html\"",
+          "explanation": "iframe using HTTP detected. Use HTTPS instead.",
+          "suggested_fix": "Review dangerous_functions vulnerability at line 10",
+          "file_path": "samples/vulnerable.html"
+        },
+        {
+          "flag_id": "TS_EVAL_4",
+          "rule_id": "TS_EVAL",
+          "severity": "critical",
+          "line_number": 4,
+          "line_content": "setTimeout(eval(userCode), 1000);",
+          "matched_text": "eval(",
+          "explanation": "eval() detected. Never execute untrusted code.",
+          "suggested_fix": "Review dangerous_functions vulnerability at line 4",
+          "file_path": "samples/vulnerable_ts.ts"
+        },
+        {
+          "flag_id": "JS_EVAL_4",
+          "rule_id": "JS_EVAL",
+          "severity": "critical",
+          "line_number": 4,
+          "line_content": "eval(\"console.log('dangerous')\");",
+          "matched_text": "eval(",
+          "explanation": "eval() detected. Never execute untrusted code.",
+          "suggested_fix": "Review dangerous_functions vulnerability at line 4",
+          "file_path": "samples/vulnerable_js.js"
+        },
+        {
+          "flag_id": "JS_INNER_HTML_ASSIGN_5",
+          "rule_id": "JS_INNER_HTML_ASSIGN",
+          "severity": "high",
+          "line_number": 5,
+          "line_content": "document.innerHTML = userInput;",
+          "matched_text": ".innerHTML = ",
+          "explanation": "innerHTML assignment detected. Use textContent for plain text.",
+          "suggested_fix": "Review dangerous_functions vulnerability at line 5",
+          "file_path": "samples/vulnerable_js.js"
+        },
+        {
+          "flag_id": "CSS_COMMENT_SECRETS_1",
+          "rule_id": "CSS_COMMENT_SECRETS",
+          "severity": "critical",
+          "line_number": 1,
+          "line_content": "/* Main stylesheet */",
+          "matched_text": "/* Main stylesheet */\n/* sk-proj-abc123def456ghi789jkl012345",
+          "explanation": "API Key detected in CSS comment. Remove secrets from comments.",
+          "suggested_fix": "Review secrets vulnerability at line 1",
+          "file_path": "samples/vulnerable.css"
+        },
+        {
+          "flag_id": "CSS_INSECURE_IMPORT_8",
+          "rule_id": "CSS_INSECURE_IMPORT",
+          "severity": "high",
+          "line_number": 8,
+          "line_content": "@import url(\"http://unsafe-fonts.com/style.css\");",
+          "matched_text": "@import url(\"http://u",
+          "explanation": "CSS import using HTTP detected. Use HTTPS instead.",
+          "suggested_fix": "Review dangerous_functions vulnerability at line 8",
+          "file_path": "samples/vulnerable.css"
+        }
+      ],
+      "summary": {
+        "critical": 10,
+        "danger": 0,
+        "high_risk": 0
+      }
+    },
+    {
+      "scan_id": "1c370237",
+      "name": "vulnerable_js.js",
+      "timestamp": "2026-01-27T20:42:21.266502",
+      "file_scanned": "samples/vulnerable_js.js",
+      "total_flags": 2,
+      "flags": [
+        {
+          "flag_id": "JS_EVAL_4",
+          "rule_id": "JS_EVAL",
+          "severity": "critical",
+          "line_number": 4,
+          "line_content": "eval(\"console.log('dangerous')\");",
+          "matched_text": "eval(",
+          "explanation": "eval() detected. Never execute untrusted code.",
+          "suggested_fix": "Review dangerous_functions vulnerability at line 4",
+          "file_path": "samples/vulnerable_js.js"
+        },
+        {
+          "flag_id": "JS_INNER_HTML_ASSIGN_5",
+          "rule_id": "JS_INNER_HTML_ASSIGN",
+          "severity": "high",
+          "line_number": 5,
+          "line_content": "document.innerHTML = userInput;",
+          "matched_text": ".innerHTML = ",
+          "explanation": "innerHTML assignment detected. Use textContent for plain text.",
+          "suggested_fix": "Review dangerous_functions vulnerability at line 5",
+          "file_path": "samples/vulnerable_js.js"
+        }
+      ],
+      "summary": {
+        "critical": 1,
+        "danger": 0,
+        "high_risk": 0
+      }
+    },
+    {
+      "scan_id": "7267ece0",
+      "name": "vulnerable_js.js",
+      "timestamp": "2026-01-27T21:02:13.471441",
+      "file_scanned": "samples/vulnerable_js.js",
+      "total_flags": 2,
+      "flags": [
+        {
+          "flag_id": "JS_EVAL_4",
+          "rule_id": "JS_EVAL",
+          "severity": "critical",
+          "line_number": 4,
+          "line_content": "eval(\"console.log('dangerous')\");",
+          "matched_text": "eval(",
+          "explanation": "eval() detected. Never execute untrusted code.",
+          "suggested_fix": "Review dangerous_functions vulnerability at line 4",
+          "file_path": "samples/vulnerable_js.js"
+        },
+        {
+          "flag_id": "JS_INNER_HTML_ASSIGN_5",
+          "rule_id": "JS_INNER_HTML_ASSIGN",
+          "severity": "high",
+          "line_number": 5,
+          "line_content": "document.innerHTML = userInput;",
+          "matched_text": ".innerHTML = ",
+          "explanation": "innerHTML assignment detected. Use textContent for plain text.",
+          "suggested_fix": "Review dangerous_functions vulnerability at line 5",
+          "file_path": "samples/vulnerable_js.js"
+        }
+      ],
+      "summary": {
+        "critical": 1,
+        "danger": 0,
+        "high_risk": 0
+      }
     }
   ]
 }

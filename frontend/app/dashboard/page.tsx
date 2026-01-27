@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Footer } from "@/components/Footer";
 import {
   Table,
   TableBody,
@@ -85,10 +86,22 @@ export default function DashboardPage() {
                 Scan Code
               </Link>
               <Link
+                href="/scans"
+                className="text-gray-300 hover:text-white transition-colors"
+              >
+                Scans
+              </Link>
+              <Link
                 href="/dashboard"
                 className="text-white font-medium transition-colors"
               >
                 Dashboard
+              </Link>
+              <Link
+                href="/learn"
+                className="text-gray-300 hover:text-white transition-colors"
+              >
+                Learn
               </Link>
               <Button
                 variant="outline"
@@ -281,8 +294,8 @@ export default function DashboardPage() {
                                   rule.precision >= 80
                                     ? "bg-green-500/20 text-green-400 border-green-500/30"
                                     : rule.precision >= 50
-                                    ? "bg-yellow-500/20 text-yellow-400 border-yellow-500/30"
-                                    : "bg-red-500/20 text-red-400 border-red-500/30"
+                                      ? "bg-yellow-500/20 text-yellow-400 border-yellow-500/30"
+                                      : "bg-red-500/20 text-red-400 border-red-500/30"
                                 }
                               >
                                 {rule.precision.toFixed(1)}%
@@ -321,6 +334,7 @@ export default function DashboardPage() {
           </div>
         </div>
       </footer>
+      <Footer />
     </main>
   );
 }

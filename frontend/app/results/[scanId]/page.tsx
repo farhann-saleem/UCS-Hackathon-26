@@ -7,6 +7,7 @@ import Link from "next/link";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Footer } from "@/components/Footer";
 import { FlaggedResult } from "@/components/FlaggedResult";
 import { getScanResults, type ScanResponse } from "@/lib/api";
 import {
@@ -84,10 +85,22 @@ export default function ResultsPage() {
                 Scan Code
               </Link>
               <Link
+                href="/scans"
+                className="text-gray-300 hover:text-white transition-colors"
+              >
+                Scans
+              </Link>
+              <Link
                 href="/dashboard"
                 className="text-gray-300 hover:text-white transition-colors"
               >
                 Dashboard
+              </Link>
+              <Link
+                href="/learn"
+                className="text-gray-300 hover:text-white transition-colors"
+              >
+                Learn
               </Link>
             </div>
           </div>
@@ -250,6 +263,7 @@ export default function ResultsPage() {
           </div>
         </div>
       </footer>
+      <Footer />
     </main>
   );
 }

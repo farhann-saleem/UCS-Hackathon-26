@@ -1,0 +1,12 @@
+/* Main stylesheet */
+/* sk-proj-abc123def456ghi789jkl0123456789 */
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+@import url("http://unsafe-fonts.com/style.css");
+
+.header {
+    background-color: #333;
+}

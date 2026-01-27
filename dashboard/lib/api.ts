@@ -3,13 +3,34 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8001";
 export interface Flag {
   flag_id: string;
   rule_id: string;
-  severity: "critical" | "danger" | "high_risk";
+  severity: "critical" | "danger" | "high_risk" | "high";
   line_number: number;
   line_content: string;
   matched_text: string;
   explanation: string;
   suggested_fix: string;
   file_path: string;
+}
+
+// Normalize severity values from different scanners
+function normalizeSeverity(severity: string): "critical" | "danger" | "high_risk" {
+  const map: Record<string, "critical" | "danger" | "high_risk"> = {
+    critical: "critical",
+    danger: "danger",
+    high_risk: "high_risk",
+    high: "high_risk",  // Map "high" to "high_risk"
+    medium: "danger",
+    low: "high_risk",
+  };
+  return map[severity] || "high_risk";
+}
+
+// Normalize flags in scan results
+function normalizeFlags(flags: Flag[]): Flag[] {
+  return flags.map(flag => ({
+    ...flag,
+    severity: normalizeSeverity(flag.severity),
+  }));
 }
 
 export interface ScanResults {
@@ -76,7 +97,12 @@ export async function getResults(): Promise<ScanResults> {
   if (!response.ok) {
     throw new Error("Failed to fetch results");
   }
-  return response.json();
+  const data = await response.json();
+  // Normalize severity values
+  if (data.flags) {
+    data.flags = normalizeFlags(data.flags);
+  }
+  return data;
 }
 
 export async function submitFeedback(feedback: FeedbackRequest): Promise<FeedbackResponse> {
@@ -113,7 +139,15 @@ export async function getScanHistory(): Promise<ScanHistoryResponse> {
   if (!response.ok) {
     throw new Error("Failed to fetch scan history");
   }
-  return response.json();
+  const data = await response.json();
+  // Normalize severity values in all scans
+  if (data.scans) {
+    data.scans = data.scans.map((scan: ScanResults) => ({
+      ...scan,
+      flags: scan.flags ? normalizeFlags(scan.flags) : [],
+    }));
+  }
+  return data;
 }
 
 export async function getScanById(scanId: string): Promise<ScanResults> {

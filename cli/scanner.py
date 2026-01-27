@@ -9,9 +9,19 @@ from datetime import datetime
 try:
     from .detectors import ALL_RULES, detect_all
     from .detectors.base import Flag
+    from .multi_lang_scanner import (
+        scan_file_multi_lang,
+        scan_files_multi_lang,
+        get_file_type,
+    )
 except ImportError:
     from detectors import ALL_RULES, detect_all
     from detectors.base import Flag
+    from multi_lang_scanner import (
+        scan_file_multi_lang,
+        scan_files_multi_lang,
+        get_file_type,
+    )
 
 # Data directory path
 DATA_DIR = Path(__file__).parent.parent / "data"
@@ -28,12 +38,13 @@ def load_whitelist() -> List[str]:
         return []
 
 
-def scan_file(filepath: str) -> List[Flag]:
+def scan_file(filepath: str, use_multi_lang: bool = True) -> List[Flag]:
     """
     Scan a single file for vulnerabilities.
 
     Args:
         filepath: Path to the file to scan
+        use_multi_lang: Whether to use multi-language scanner (Python, JS, TS)
 
     Returns:
         List of Flag objects for detected vulnerabilities
@@ -49,7 +60,37 @@ def scan_file(filepath: str) -> List[Flag]:
     # Load whitelist
     whitelist = load_whitelist()
 
-    # Run detection
+    # Use multi-language scanner for supported file types
+    if use_multi_lang:
+        file_type = get_file_type(str(filepath))
+        if file_type in ["python", "javascript", "typescript", "html", "css"]:
+            findings = scan_file_multi_lang(str(filepath), code)
+            # Convert multi-lang findings to Flag objects
+            flags = []
+            for finding in findings:
+                # Check against whitelist
+                if any(pattern in finding.matched_text for pattern in whitelist):
+                    continue
+
+                flag = Flag(
+                    flag_id=f"{finding.pattern_id}_{finding.line_number}",
+                    rule_id=finding.pattern_id,
+                    severity=finding.severity,
+                    line_number=finding.line_number,
+                    line_content=(
+                        code.split("\n")[finding.line_number - 1]
+                        if finding.line_number <= len(code.split("\n"))
+                        else ""
+                    ),
+                    matched_text=finding.matched_text,
+                    explanation=finding.message,
+                    suggested_fix=f"Review {finding.category} vulnerability at line {finding.line_number}",
+                    file_path=str(filepath),
+                )
+                flags.append(flag)
+            return flags
+
+    # Fallback to original Python-only detector
     flags = detect_all(code, ALL_RULES, str(filepath), whitelist)
 
     return flags
@@ -66,14 +107,26 @@ def scan_directory(dirpath: str, extensions: List[str] = None) -> List[Flag]:
     Returns:
         List of Flag objects for all detected vulnerabilities
     """
-    extensions = extensions or [".py", ".js", ".ts", ".jsx", ".tsx"]
+    extensions = extensions or [
+        ".py",
+        ".js",
+        ".ts",
+        ".jsx",
+        ".tsx",
+        ".html",
+        ".htm",
+        ".css",
+    ]
     dirpath = Path(dirpath)
     all_flags = []
 
     for filepath in dirpath.rglob("*"):
         if filepath.is_file() and filepath.suffix in extensions:
             # Skip node_modules, venv, __pycache__
-            if any(skip in str(filepath) for skip in ["node_modules", "venv", "__pycache__", ".git"]):
+            if any(
+                skip in str(filepath)
+                for skip in ["node_modules", "venv", "__pycache__", ".git"]
+            ):
                 continue
             try:
                 flags = scan_file(str(filepath))
@@ -114,7 +167,7 @@ def save_results(flags: List[Flag], filepath: str = None) -> Dict[str, Any]:
             "critical": len([f for f in flags if f.severity == "critical"]),
             "danger": len([f for f in flags if f.severity == "danger"]),
             "high_risk": len([f for f in flags if f.severity == "high_risk"]),
-        }
+        },
     }
 
     # Save to scan_results.json (latest scan)
@@ -198,7 +251,9 @@ def delete_scan(scan_id: str) -> bool:
 
     # Filter out the scan to delete
     original_count = len(history.get("scans", []))
-    history["scans"] = [s for s in history.get("scans", []) if s.get("scan_id") != scan_id]
+    history["scans"] = [
+        s for s in history.get("scans", []) if s.get("scan_id") != scan_id
+    ]
 
     if len(history["scans"]) < original_count:
         with open(history_path, "w") as f:
