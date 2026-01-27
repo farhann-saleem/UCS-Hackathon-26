@@ -5,8 +5,8 @@ A professional, open-source CLI tool that detects security vulnerabilities
 in AI-generated code with configurable whitelisting and metrics tracking.
 """
 
-__version__ = "1.0.0"
-__author__ = "UCS Hackathon 26"
+__version__ = "1.0.1"
+__author__ = "Farhan Saleem"
 __license__ = "MIT"
 
 __all__ = [

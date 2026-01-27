@@ -11,13 +11,16 @@ long_description = readme_file.read_text(encoding="utf-8") if readme_file.exists
 
 setup(
     name="checkmate-ai",
-    version="1.0.0",
-    author="UCS Hackathon 26",
-    author_email="team@checkmate.ai",
+    # UPDATED: Must match pyproject.toml
+    version="1.0.1",
+    author="Farhan Saleem",
+    author_email="chaudaryfarhann@gmail.com",
     description="AI Code Security Scanner with Human-in-the-Loop Feedback",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/yourusername/checkmate",
+    
+    # UPDATED: Main URL
+    url="https://github.com/farhann-saleem/UCS-Hackathon-26",
     license="MIT",
     
     # Package discovery
@@ -39,10 +42,10 @@ setup(
         "rich>=13.0.0",
     ],
     
-    # CLI entry point - THIS IS IMPORTANT!
+    # CLI entry point
     entry_points={
         "console_scripts": [
-            "checkmate=checkmate.cli:cli",  # Maps 'checkmate' command to cli() function
+            "checkmate=checkmate.cli:cli",
         ],
     },
     
@@ -65,8 +68,12 @@ setup(
     ],
     
     keywords="security, vulnerability, scanner, ai, feedback, anomaly-detection",
+    
+    # UPDATED: Correct Links
     project_urls={
-        "Bug Reports": "https://github.com/yourusername/checkmate/issues",
-        "Source": "https://github.com/yourusername/checkmate",
+        "Homepage": "https://github.com/farhann-saleem/UCS-Hackathon-26",
+        "Documentation": "https://github.com/farhann-saleem/UCS-Hackathon-26#readme",
+        "Bug Reports": "https://github.com/farhann-saleem/UCS-Hackathon-26/issues",
+        "Source": "https://github.com/farhann-saleem/UCS-Hackathon-26",
     },
 )

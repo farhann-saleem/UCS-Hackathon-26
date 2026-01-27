@@ -4,13 +4,13 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "checkmate-ai"
-version = "1.0.0"
+version = "1.0.1"
 description = "AI Code Security Scanner with Human-in-the-Loop Feedback"
 readme = "README.md"
 requires-python = ">=3.9"
 license = {text = "MIT"}
 authors = [
-    {name = "UCS Hackathon 26", email = "team@checkmate.ai"}
+    {name = "Farhan Saleem", email = "chaudaryfarhann@gmail.com"}
 ]
 keywords = ["security", "vulnerability", "scanner", "ai", "feedback", "anomaly-detection"]
 classifiers = [
@@ -42,10 +42,10 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/yourusername/checkmate"
-Documentation = "https://github.com/yourusername/checkmate/blob/main/README.md"
-Repository = "https://github.com/yourusername/checkmate"
-Issues = "https://github.com/yourusername/checkmate/issues"
+Homepage = "https://github.com/farhann-saleem/UCS-Hackathon-26"
+Documentation = "https://github.com/farhann-saleem/UCS-Hackathon-26#readme"
+Repository = "https://github.com/farhann-saleem/UCS-Hackathon-26"
+Issues = "https://github.com/farhann-saleem/UCS-Hackathon-26/issues"
 
 [project.scripts]
 checkmate = "checkmate.cli:cli"
