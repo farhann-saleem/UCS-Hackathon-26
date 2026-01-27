@@ -801,6 +801,19 @@
         "danger": 0,
         "high_risk": 0
       }
+    },
+    {
+      "scan_id": "72abfdb6",
+      "name": "main.py",
+      "timestamp": "2026-01-28T00:25:32.701181",
+      "file_scanned": "main.py",
+      "total_flags": 0,
+      "flags": [],
+      "summary": {
+        "critical": 0,
+        "danger": 0,
+        "high_risk": 0
+      }
     }
   ]
 }

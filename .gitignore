@@ -1,0 +1,30 @@
+Distribution / Installer builds
+
+dist/
+build/
+*.egg-info/
+
+CLAUDE.md
+
+Virtual Environments
+
+venv/
+env/
+.venv/
+
+Environment Variables (Safety check)
+
+.env
+
+CheckMate Local Data (If created in root)
+
+checkmate_scan_results.json
+checkmate_whitelist.json
+*.db
+*.log
+
+IDE Settings
+
+.vscode/
+.idea/
+.DS_Store

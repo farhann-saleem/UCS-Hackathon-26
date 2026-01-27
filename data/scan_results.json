@@ -1,35 +1,12 @@
 {
-  "scan_id": "7267ece0",
-  "name": "vulnerable_js.js",
-  "timestamp": "2026-01-27T21:02:13.471441",
-  "file_scanned": "samples/vulnerable_js.js",
-  "total_flags": 2,
-  "flags": [
-    {
-      "flag_id": "JS_EVAL_4",
-      "rule_id": "JS_EVAL",
-      "severity": "critical",
-      "line_number": 4,
-      "line_content": "eval(\"console.log('dangerous')\");",
-      "matched_text": "eval(",
-      "explanation": "eval() detected. Never execute untrusted code.",
-      "suggested_fix": "Review dangerous_functions vulnerability at line 4",
-      "file_path": "samples/vulnerable_js.js"
-    },
-    {
-      "flag_id": "JS_INNER_HTML_ASSIGN_5",
-      "rule_id": "JS_INNER_HTML_ASSIGN",
-      "severity": "high",
-      "line_number": 5,
-      "line_content": "document.innerHTML = userInput;",
-      "matched_text": ".innerHTML = ",
-      "explanation": "innerHTML assignment detected. Use textContent for plain text.",
-      "suggested_fix": "Review dangerous_functions vulnerability at line 5",
-      "file_path": "samples/vulnerable_js.js"
-    }
-  ],
+  "scan_id": "72abfdb6",
+  "name": "main.py",
+  "timestamp": "2026-01-28T00:25:32.701181",
+  "file_scanned": "main.py",
+  "total_flags": 0,
+  "flags": [],
   "summary": {
-    "critical": 1,
+    "critical": 0,
     "danger": 0,
     "high_risk": 0
   }

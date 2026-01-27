@@ -1,5 +1,5 @@
 {
-  "total_scans": 20,
+  "total_scans": 21,
   "precision_history": [
     {
       "timestamp": "2026-01-27T21:15:50.280852",
@@ -9,8 +9,8 @@
       "false_positive_count": 0
     }
   ],
-  "last_scan": "2026-01-27T21:02:13.474868",
-  "last_flag_count": 2,
+  "last_scan": "2026-01-28T00:25:32.703992",
+  "last_flag_count": 0,
   "current_precision": 100.0,
   "total_feedback": 1,
   "valid_count": 1,

@@ -1,0 +1,57 @@
+[build-system]
+requires = ["setuptools>=65.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "checkmate-ai"
+version = "1.0.0"
+description = "AI Code Security Scanner with Human-in-the-Loop Feedback"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [
+    {name = "UCS Hackathon 26", email = "team@checkmate.ai"}
+]
+keywords = ["security", "vulnerability", "scanner", "ai", "feedback", "anomaly-detection"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Security",
+    "Topic :: Software Development :: Quality Assurance",
+]
+
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.30.0",
+    "pydantic>=2.7.0",
+    "pydantic-settings>=2.0.0",
+    "aiosqlite>=0.19.0",
+    "python-dotenv>=1.0.0",
+    "click>=8.1.0",
+    "rich>=13.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/yourusername/checkmate"
+Documentation = "https://github.com/yourusername/checkmate/blob/main/README.md"
+Repository = "https://github.com/yourusername/checkmate"
+Issues = "https://github.com/yourusername/checkmate/issues"
+
+[project.scripts]
+checkmate = "checkmate.cli:cli"
+
+[tool.setuptools]
+packages = ["checkmate"]
+
+[tool.setuptools.package-data]
+checkmate = ["py.typed"]

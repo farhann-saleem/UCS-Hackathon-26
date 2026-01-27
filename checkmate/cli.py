@@ -14,13 +14,14 @@ from rich.table import Table
 from rich.panel import Panel
 from rich import box
 
-from scanner import scan_file, scan_directory, save_results, reset_data, get_whitelist
+from checkmate.scanner import scan_file, scan_directory, save_results, reset_data, get_whitelist
 
 console = Console()
 
-# Paths
-ROOT_DIR = Path(__file__).parent.parent
-SERVER_DIR = ROOT_DIR / "server"
+# Get the root directory (parent of checkmate package)
+PACKAGE_DIR = Path(__file__).parent
+ROOT_DIR = PACKAGE_DIR.parent
+BACKEND_DIR = ROOT_DIR / "backend"
 DASHBOARD_DIR = ROOT_DIR / "dashboard"
 
 
@@ -116,15 +117,15 @@ def dashboard():
     ))
 
     # Check if backend directory exists
-    if not ROOT_DIR.joinpath("backend").exists():
-        console.print("[red]Error: Backend directory not found[/red]")
+    if not BACKEND_DIR.exists():
+        console.print("[red]Error: Backend directory not found at {BACKEND_DIR}[/red]")
         sys.exit(1)
 
-    # Start FastAPI server (using backend, not server)
+    # Start FastAPI server (using backend)
     console.print("[cyan]Starting API server on port 8001...[/cyan]")
     server_process = subprocess.Popen(
         ["python", "main.py"],
-        cwd=ROOT_DIR / "backend",
+        cwd=BACKEND_DIR,
         stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL,
     )
