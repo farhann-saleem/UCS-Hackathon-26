@@ -1,0 +1,128 @@
+{
+  "scans": [
+    {
+      "scan_id": "2dcf100a",
+      "name": "vulnerable_1.py",
+      "timestamp": "2026-01-27T14:45:02.934512",
+      "file_scanned": "samples/vulnerable_1.py",
+      "total_flags": 10,
+      "flags": [
+        {
+          "flag_id": "6f086f21-f809-479e-833a-944782834066",
+          "rule_id": "SEC001",
+          "severity": "critical",
+          "line_number": 7,
+          "line_content": "api_key = \"sk-1234567890abcdefghijklmnopqrstuvwxyz\"",
+          "matched_text": "sk-1234567890abcdefghijklmnopqrstuvwxyz",
+          "explanation": "Hardcoded OpenAI API key detected. API keys should never be committed to code.",
+          "suggested_fix": "Use environment variables: import os; api_key = os.environ.get('OPENAI_API_KEY')",
+          "file_path": "samples/vulnerable_1.py"
+        },
+        {
+          "flag_id": "2efd7654-1a50-4abe-9de1-2da7e5e64bdf",
+          "rule_id": "SEC005",
+          "severity": "critical",
+          "line_number": 7,
+          "line_content": "api_key = \"sk-1234567890abcdefghijklmnopqrstuvwxyz\"",
+          "matched_text": "api_key = \"sk-1234567890abcdefghijklmnopqrstuvwxyz\"",
+          "explanation": "Hardcoded API key detected. API keys should be stored securely.",
+          "suggested_fix": "Use environment variables: os.environ.get('API_KEY')",
+          "file_path": "samples/vulnerable_1.py"
+        },
+        {
+          "flag_id": "47b8a8a5-892a-450d-8163-4fbcd281a97b",
+          "rule_id": "SEC004",
+          "severity": "critical",
+          "line_number": 10,
+          "line_content": "password = \"admin123\"",
+          "matched_text": "password = \"admin123\"",
+          "explanation": "Hardcoded password detected. Passwords should never be in source code.",
+          "suggested_fix": "Use environment variables or a secrets manager: os.environ.get('DB_PASSWORD')",
+          "file_path": "samples/vulnerable_1.py"
+        },
+        {
+          "flag_id": "ec3f7f19-56f1-4177-8b5b-09b822a467bc",
+          "rule_id": "SEC004",
+          "severity": "critical",
+          "line_number": 11,
+          "line_content": "db_password = \"supersecret123\"",
+          "matched_text": "password = \"supersecret123\"",
+          "explanation": "Hardcoded password detected. Passwords should never be in source code.",
+          "suggested_fix": "Use environment variables or a secrets manager: os.environ.get('DB_PASSWORD')",
+          "file_path": "samples/vulnerable_1.py"
+        },
+        {
+          "flag_id": "449160c8-1f81-4780-8904-c3726d9d4a75",
+          "rule_id": "SEC007",
+          "severity": "critical",
+          "line_number": 14,
+          "line_content": "DATABASE_URL = \"postgres://admin:password123@localhost:5432/mydb\"",
+          "matched_text": "postgres://admin:password123@",
+          "explanation": "Database connection string with credentials detected.",
+          "suggested_fix": "Use environment variables for database URLs: os.environ.get('DATABASE_URL')",
+          "file_path": "samples/vulnerable_1.py"
+        },
+        {
+          "flag_id": "43b34eac-ec8f-418c-8b9f-b3384242c52f",
+          "rule_id": "SQL001",
+          "severity": "high_risk",
+          "line_number": 20,
+          "line_content": "    cursor.execute(f\"SELECT * FROM users WHERE id = {user_id}\")",
+          "matched_text": "execute(f\"SELECT * FROM users WHERE id = {user_id}\"",
+          "explanation": "SQL injection vulnerability: f-string used in SQL query. User input can manipulate the query.",
+          "suggested_fix": "Use parameterized queries: cursor.execute('SELECT * FROM users WHERE id = ?', (user_id,))",
+          "file_path": "samples/vulnerable_1.py"
+        },
+        {
+          "flag_id": "af9da09b-1f35-4ced-b3b8-8140fa1f0efc",
+          "rule_id": "FUNC005",
+          "severity": "danger",
+          "line_number": 27,
+          "line_content": "    os.system(\"ls -la \" + user_input)",
+          "matched_text": "os.system(",
+          "explanation": "os.system() can lead to command injection if user input is included.",
+          "suggested_fix": "Use subprocess.run() with a list of arguments: subprocess.run(['cmd', 'arg1'], check=True)",
+          "file_path": "samples/vulnerable_1.py"
+        },
+        {
+          "flag_id": "c12989b3-3689-49de-8e93-08a5119a6270",
+          "rule_id": "FUNC003",
+          "severity": "danger",
+          "line_number": 33,
+          "line_content": "    return pickle.loads(data)",
+          "matched_text": "pickle.loads(",
+          "explanation": "pickle can execute arbitrary code during deserialization. Never unpickle untrusted data.",
+          "suggested_fix": "Use JSON for serialization, or use pickle with hmac verification for trusted sources only",
+          "file_path": "samples/vulnerable_1.py"
+        },
+        {
+          "flag_id": "7e3d4723-9ef6-43f9-9c46-1b38cf179bd7",
+          "rule_id": "FUNC001",
+          "severity": "danger",
+          "line_number": 39,
+          "line_content": "    return eval(expr)",
+          "matched_text": "eval(",
+          "explanation": "eval() executes arbitrary code. If user input reaches eval(), attackers can run any code.",
+          "suggested_fix": "Use ast.literal_eval() for safe evaluation of literals, or avoid eval entirely",
+          "file_path": "samples/vulnerable_1.py"
+        },
+        {
+          "flag_id": "2638e417-d98f-42c7-a466-0177afceb93b",
+          "rule_id": "FUNC002",
+          "severity": "danger",
+          "line_number": 45,
+          "line_content": "    exec(code)",
+          "matched_text": "exec(",
+          "explanation": "exec() executes arbitrary Python code. This is a critical security risk if user input is involved.",
+          "suggested_fix": "Avoid exec(). Use safer alternatives like importlib or predefined function mappings",
+          "file_path": "samples/vulnerable_1.py"
+        }
+      ],
+      "summary": {
+        "critical": 5,
+        "danger": 4,
+        "high_risk": 1
+      }
+    }
+  ]
+}

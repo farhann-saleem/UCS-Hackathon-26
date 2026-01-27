@@ -605,3 +605,88 @@ CREATE INDEX idx_feedback_created ON feedback(created_at);
 ---
 
 ---
+
+## Updated User Flow
+
+### Step A: Dashboard Launch
+1. User opens terminal
+2. Runs `checkmate dashboard`
+3. System starts FastAPI server (port 8000) and Next.js (port 3000)
+4. Browser auto-opens to localhost:3000
+5. Dashboard shows "Waiting for scan..." state
+
+### Step B: Code Scan
+1. User opens second terminal
+2. Runs `checkmate scan demo_virus.py`
+3. CLI runs three detection categories:
+   - **Critical**: Secrets (OpenAI keys, AWS keys, passwords)
+   - **Danger**: Unsafe execution (eval, exec, pickle)
+   - **High Risk**: SQL injection (f-strings, concatenation)
+4. Results saved to data/scan_results.json
+5. Terminal shows colored summary (red for critical, orange for danger)
+
+### Step C: Dashboard Handoff
+1. Dashboard polls /api/results every 2 seconds
+2. When new scan detected, dashboard auto-updates
+3. User sees flags displayed with:
+   - Severity badge (color-coded)
+   - Code snippet (syntax highlighted)
+   - Explanation of vulnerability
+   - Suggested fix
+   - Feedback buttons
+
+### Step D: Human-in-the-Loop
+1. Human reviews each flag
+2. Options:
+   - **Mark as Safe**: Adds pattern to whitelist.json (future scans skip it)
+   - **Copy Fix**: Copies suggested fix to clipboard
+3. Feedback stored in feedback.json
+4. Metrics updated in metrics.json
+
+### Step E: Learning Demonstration
+1. User runs `checkmate scan demo_virus.py` again
+2. CLI reads whitelist.json, skips marked patterns
+3. Fewer flags this time
+4. Dashboard metrics page shows:
+   - Precision improved (e.g., 62% → 84%)
+   - Before/After comparison card
+   - Per-rule confidence scores
+
+---
+
+## CLI Commands
+
+| Command | Description |
+|---------|-------------|
+| `checkmate dashboard` | Starts server + dashboard, opens browser |
+| `checkmate scan <file>` | Scans file, saves results, triggers dashboard refresh |
+| `checkmate scan .` | Scans all .py and .js files in current directory |
+| `checkmate whitelist` | Shows current whitelisted patterns |
+| `checkmate reset` | Clears all data for fresh demo |
+
+---
+
+## Severity Levels
+
+| Level | Color | Examples |
+|-------|-------|----------|
+| Critical | Red | Hardcoded API keys, passwords |
+| Danger | Orange | eval(), exec(), pickle.loads() |
+| High Risk | Yellow | SQL injection patterns |
+
+---
+
+## Suggested Fix Feature
+
+Each flag includes a suggested fix that the human can review:
+
+| Vulnerability | Suggested Fix |
+|---------------|---------------|
+| `api_key = "sk-1234..."` | `api_key = os.environ.get('OPENAI_API_KEY')` |
+| `eval(user_input)` | `ast.literal_eval(user_input)` or avoid eval |
+| `f"SELECT * FROM users WHERE id = {id}"` | `cursor.execute("SELECT * FROM users WHERE id = ?", (id,))` |
+
+Human can click "Copy Fix" to copy the suggestion, then manually apply it.
+
+---
+---
