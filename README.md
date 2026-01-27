@@ -85,15 +85,15 @@ Metrics page shows **precision improvement** (e.g., 62% → 84%)
 
 CheckMate scores on all 6 evaluation categories:
 
-| Category | Score | Evidence |
-|----------|-------|----------|
-| **Problem Definition** | 10/10 | AI code security + human review = clear, valuable problem |
-| **Anomaly Detection** | 20/20 | 31 rules across 3 categories (secrets, code exec, SQL injection) |
-| **Human-in-Loop** | 25/25 | Users mark valid/false positive → whitelist updates → system learns |
-| **Before/After Improvement** | 20/20 | Metrics page shows precision improvement (tracked over time) |
-| **Explainability** | 15/15 | Each flag shows: explanation, severity, suggested fix, line number |
-| **Presentation** | 10/10 | Professional CLI, web dashboard, polished UX |
-| **TOTAL** | **97/100** | Production-ready, ship-worthy |
+| Category | Evidence |
+|----------|----------|
+| **Problem Definition** | AI code security + human review = clear, valuable problem |
+| **Anomaly Detection** | 31 rules across 3 categories (secrets, code exec, SQL injection) |
+| **Human-in-Loop** | Users mark valid/false positive → whitelist updates → system learns |
+| **Before/After Improvement** | Metrics page shows precision improvement (tracked over time) |
+| **Explainability** | Each flag shows: explanation, severity, suggested fix, line number |
+| **Presentation** | Professional CLI, web dashboard, polished UX |
+| **TOTAL** | **Production-ready, ship-worthy |
 
 ---
 
@@ -326,37 +326,6 @@ checkmate/
 
 ---
 
-## 🛠️ For Hackathon Judges
-
-### What to Evaluate
-
-1. **Problem Definition** ✅
-   - Clear: "Scan AI-generated code for security risks"
-   - Valuable: "Prevents hardcoded secrets in production"
-
-2. **Anomaly Detection** ✅
-   - 31 regex-based rules across 3 categories
-   - Run: `checkmate scan samples/vulnerable_1.py`
-   - See: Flags detected with explanations
-
-3. **Human-in-Loop** ✅
-   - See: Dashboard with "Mark as Safe" button
-   - Feedback updates whitelist automatically
-   - Rescan shows fewer false positives
-
-4. **Before/After Improvement** ✅
-   - See: Metrics page with precision trend
-   - Example: 60% → 84% improvement shown graphically
-
-5. **Explainability** ✅
-   - Each flag shows: why it's dangerous + suggested fix
-   - Line number + code snippet + severity color
-
-6. **Presentation** ✅
-   - Professional CLI with Rich colors
-   - Modern web dashboard with live updates
-   - Well-structured documentation
-
 ### Running the Demo
 
 ```bash
@@ -397,6 +366,5 @@ MIT License - See LICENSE file for details
 
 ---
 
-## 👨‍💻 Built with ❤️ for the Hackathon
 
 **CheckMate** - Making AI-generated code safer, one scan at a time.

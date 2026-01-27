@@ -12,7 +12,7 @@ Complete installation and setup instructions for CheckMate.
 
 ## Installation
 
-### Option 1: Install from PyPI (Recommended) ⭐
+### Option 1: Install from PyPI (Recommended) 
 
 **The easiest way - works globally on your system.**
 
