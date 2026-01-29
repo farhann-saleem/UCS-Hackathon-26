@@ -62,16 +62,6 @@ Scan → Review Flags → Mark as Valid/False Positive → System Learns → Bet
 - 💾 **Persistent Learning** - Whitelist saves automatically
 - 🌍 **Multi-Language** - Python & JavaScript support
 
-### See It In Action
-
-**CLI Scanner Output:**
-
-![Scanner detecting 7 critical vulnerabilities](./checkmate-scan.png)
-
-**Dashboard Launch:**
-
-![Dashboard starting with API server and web UI](./checkmate-dashbaord.png)
-
 ---
 
 ## ⚡ Quick Start
@@ -105,26 +95,6 @@ The dashboard updates automatically showing detected flags.
 checkmate scan demo.py
 ```
 Metrics page shows **precision improvement** (e.g., 62% → 84%)
-
----
-
-## 📸 Screenshots
-
-### Starting the Dashboard
-When you run `checkmate dashboard`, the tool starts both the API server (port 8001) and the web dashboard (port 3000), then automatically opens your browser:
-
-![CheckMate Dashboard Startup](./checkmate-dashbaord.png)
-
-### CLI Scanner in Action
-The scanner detects multiple categories of vulnerabilities and presents them in a clear, organized table format:
-
-![CheckMate Scanner Output](./checkmate-scan.png)
-
-The scanner categorizes findings by severity (Critical, Danger, High Risk) and provides:
-- **Line numbers** for quick navigation
-- **Rule names** for understanding what was detected
-- **Clear explanations** of each security issue
-- **Actionable recommendations** for fixes
 
 ---
 
