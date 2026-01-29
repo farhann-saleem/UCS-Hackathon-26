@@ -12,7 +12,7 @@ long_description = readme_file.read_text(encoding="utf-8") if readme_file.exists
 setup(
     name="checkmate-ai",
     # UPDATED: Must match pyproject.toml
-    version="1.0.2",
+    version="1.0.3",
     author="Farhan Saleem",
     author_email="chaudaryfarhann@gmail.com",
     description="AI Code Security Scanner with Human-in-the-Loop Feedback",
