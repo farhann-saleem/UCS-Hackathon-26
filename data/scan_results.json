@@ -1,12 +1,134 @@
 {
-  "scan_id": "72abfdb6",
-  "name": "main.py",
-  "timestamp": "2026-01-28T00:25:32.701181",
-  "file_scanned": "main.py",
-  "total_flags": 0,
-  "flags": [],
+  "scan_id": "e5bf34b9",
+  "name": "test_01.py",
+  "timestamp": "2026-01-28T13:32:56.130029",
+  "file_scanned": "test_01.py",
+  "total_flags": 11,
+  "flags": [
+    {
+      "flag_id": "PY_SECRET_OPENAI_KEY_11",
+      "rule_id": "PY_SECRET_OPENAI_KEY",
+      "severity": "critical",
+      "line_number": 11,
+      "line_content": "    openai_key = \"sk-abcdefghijklmnopqrstuvwxyz123456\"",
+      "matched_text": "sk-abcdefghijklmnopqrstuvwxyz123456",
+      "explanation": "OpenAI API Key detected. Never hardcode secrets in source code.",
+      "suggested_fix": "Review secrets vulnerability at line 11",
+      "file_path": "test_01.py"
+    },
+    {
+      "flag_id": "PY_SECRET_HARDCODED_PASSWORD_14",
+      "rule_id": "PY_SECRET_HARDCODED_PASSWORD",
+      "severity": "critical",
+      "line_number": 14,
+      "line_content": "    db_password = \"SuperSecretPassword123\"",
+      "matched_text": "password = \"SuperSecretPassword123\"",
+      "explanation": "Hardcoded password detected. Use environment variables instead.",
+      "suggested_fix": "Review secrets vulnerability at line 14",
+      "file_path": "test_01.py"
+    },
+    {
+      "flag_id": "PY_SECRET_AWS_KEY_17",
+      "rule_id": "PY_SECRET_AWS_KEY",
+      "severity": "critical",
+      "line_number": 17,
+      "line_content": "    aws_access_key = \"AKIAABCDEFGHIJKLMNOP\"",
+      "matched_text": "AKIAABCDEFGHIJKLMNOP",
+      "explanation": "AWS Access Key detected. Use IAM roles instead.",
+      "suggested_fix": "Review secrets vulnerability at line 17",
+      "file_path": "test_01.py"
+    },
+    {
+      "flag_id": "PY_SECRET_GITHUB_TOKEN_20",
+      "rule_id": "PY_SECRET_GITHUB_TOKEN",
+      "severity": "critical",
+      "line_number": 20,
+      "line_content": "    github_token = \"ghp_1234567890abcdefghijklmnopqrstuvwxyz\"",
+      "matched_text": "ghp_1234567890abcdefghijklmnopqrstuvwxyz",
+      "explanation": "GitHub token detected. Regenerate and revoke immediately.",
+      "suggested_fix": "Review secrets vulnerability at line 20",
+      "file_path": "test_01.py"
+    },
+    {
+      "flag_id": "PY_EVAL_EXEC_24",
+      "rule_id": "PY_EVAL_EXEC",
+      "severity": "critical",
+      "line_number": 24,
+      "line_content": "    # 5. Eval/Exec (Matches r\"\\b(eval|exec)\\s*\\(\")",
+      "matched_text": "Exec (",
+      "explanation": "eval() or exec() detected. Never execute untrusted input.",
+      "suggested_fix": "Review dangerous_functions vulnerability at line 24",
+      "file_path": "test_01.py"
+    },
+    {
+      "flag_id": "PY_EVAL_EXEC_26",
+      "rule_id": "PY_EVAL_EXEC",
+      "severity": "critical",
+      "line_number": 26,
+      "line_content": "    eval(user_input)",
+      "matched_text": "eval(",
+      "explanation": "eval() or exec() detected. Never execute untrusted input.",
+      "suggested_fix": "Review dangerous_functions vulnerability at line 26",
+      "file_path": "test_01.py"
+    },
+    {
+      "flag_id": "PY_PICKLE_LOADS_29",
+      "rule_id": "PY_PICKLE_LOADS",
+      "severity": "critical",
+      "line_number": 29,
+      "line_content": "    pickle.loads(b\"cos\\nsystem\\n(S'ls'\\ntR.\")",
+      "matched_text": "pickle.loads(",
+      "explanation": "pickle.loads() detected. Use json instead for untrusted data.",
+      "suggested_fix": "Review dangerous_functions vulnerability at line 29",
+      "file_path": "test_01.py"
+    },
+    {
+      "flag_id": "PY_SUBPROCESS_SHELL_32",
+      "rule_id": "PY_SUBPROCESS_SHELL",
+      "severity": "high",
+      "line_number": 32,
+      "line_content": "    subprocess.call(\"ls\", shell=True)",
+      "matched_text": "subprocess.call(\"ls\", shell=True",
+      "explanation": "subprocess with shell=True detected. Avoid shell=True.",
+      "suggested_fix": "Review dangerous_functions vulnerability at line 32",
+      "file_path": "test_01.py"
+    },
+    {
+      "flag_id": "PY_YAML_LOAD_35",
+      "rule_id": "PY_YAML_LOAD",
+      "severity": "high",
+      "line_number": 35,
+      "line_content": "    yaml.load(\"!!python/object/apply:os.system ['ls']\")",
+      "matched_text": "yaml.load(",
+      "explanation": "yaml.load() without SafeLoader detected. Use yaml.safe_load().",
+      "suggested_fix": "Review dangerous_functions vulnerability at line 35",
+      "file_path": "test_01.py"
+    },
+    {
+      "flag_id": "PY_SQL_FSTRING_42",
+      "rule_id": "PY_SQL_FSTRING",
+      "severity": "high",
+      "line_number": 42,
+      "line_content": "    cursor.execute(f\"SELECT * FROM users WHERE id = {user_id}\")",
+      "matched_text": "execute(f\"SELECT * FROM users WHERE id = {user_id}\"",
+      "explanation": "SQL query using f-string detected. Use parameterized queries.",
+      "suggested_fix": "Review sql_injection vulnerability at line 42",
+      "file_path": "test_01.py"
+    },
+    {
+      "flag_id": "PY_SQL_FORMAT_45",
+      "rule_id": "PY_SQL_FORMAT",
+      "severity": "high",
+      "line_number": 45,
+      "line_content": "    cursor.execute(\"SELECT * FROM users WHERE id = {}\".format(user_id))",
+      "matched_text": "execute(\"SELECT * FROM users WHERE id = {}\".format(",
+      "explanation": "SQL query using .format() detected. Use parameterized queries.",
+      "suggested_fix": "Review sql_injection vulnerability at line 45",
+      "file_path": "test_01.py"
+    }
+  ],
   "summary": {
-    "critical": 0,
+    "critical": 7,
     "danger": 0,
     "high_risk": 0
   }

@@ -1,10 +1,41 @@
-# ♞ CheckMate - AI Code Security Scanner with Human-in-the-Loop Feedback
+<div align="center">
+
+```
+   _____ _               _    __  __       _
+  / ____| |             | |  |  \/  |     | |
+ | |    | |__   ___  ___| | _| \  / | __ _| |_ ___
+ | |    | '_ \ / _ \/ __| |/ / |\/| |/ _` | __/ _ \
+ | |____| | | |  __/ (__|   <| |  | | (_| | ||  __/
+  \_____|_| |_|\___|\___|_|\_\_|  |_|\__,_|\__\___|
+
+    ♞ AI Code Security Scanner with Human-in-the-Loop
+```
 
 [![PyPI version](https://badge.fury.io/py/checkmate-ai.svg)](https://pypi.org/project/checkmate-ai/)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-> **Human-in-the-loop anomaly detection for AI-generated code.** A professional CLI tool that scans code for security vulnerabilities, enables human review, and learns from feedback to improve detection accuracy.
+</div>
+
+---
+
+<div align="center">
+
+**Human-in-the-loop anomaly detection for AI-generated code.**
+A professional CLI tool that scans code for security vulnerabilities, enables human review, and learns from feedback to improve detection accuracy.
+
+```bash
+pip install checkmate-ai
+checkmate scan your_code.py
+```
+
+![CheckMate Scanner in Terminal](./checkmate-scan.png)
+
+</div>
+
+## 📌 Project Background
+
+CheckMate was originally developed for a hackathon competition focused on human-in-the-loop anomaly detection. While we didn't win, we believe in the value of this tool and are continuing development as an open-source side project. Our goal is to build a practical, privacy-focused security scanner that helps developers catch vulnerabilities in AI-generated code.
 
 ## 🎯 The Problem
 
@@ -30,6 +61,16 @@ Scan → Review Flags → Mark as Valid/False Positive → System Learns → Bet
 - 🎯 **31 Detection Rules** - Across secrets, code execution, SQL injection
 - 💾 **Persistent Learning** - Whitelist saves automatically
 - 🌍 **Multi-Language** - Python & JavaScript support
+
+### See It In Action
+
+**CLI Scanner Output:**
+
+![Scanner detecting 7 critical vulnerabilities](./checkmate-scan.png)
+
+**Dashboard Launch:**
+
+![Dashboard starting with API server and web UI](./checkmate-dashbaord.png)
 
 ---
 
@@ -67,6 +108,26 @@ Metrics page shows **precision improvement** (e.g., 62% → 84%)
 
 ---
 
+## 📸 Screenshots
+
+### Starting the Dashboard
+When you run `checkmate dashboard`, the tool starts both the API server (port 8001) and the web dashboard (port 3000), then automatically opens your browser:
+
+![CheckMate Dashboard Startup](./checkmate-dashbaord.png)
+
+### CLI Scanner in Action
+The scanner detects multiple categories of vulnerabilities and presents them in a clear, organized table format:
+
+![CheckMate Scanner Output](./checkmate-scan.png)
+
+The scanner categorizes findings by severity (Critical, Danger, High Risk) and provides:
+- **Line numbers** for quick navigation
+- **Rule names** for understanding what was detected
+- **Clear explanations** of each security issue
+- **Actionable recommendations** for fixes
+
+---
+
 ## 📋 All CLI Commands
 
 | Command | Purpose |
@@ -81,19 +142,18 @@ Metrics page shows **precision improvement** (e.g., 62% → 84%)
 
 ---
 
-## 🏆 Hackathon Scoring Alignment (100 Points)
+## ✨ Core Features
 
-CheckMate scores on all 6 evaluation categories:
+CheckMate delivers on all essential security scanning capabilities:
 
-| Category | Evidence |
-|----------|----------|
+| Feature | Implementation |
+|---------|---------------|
 | **Problem Definition** | AI code security + human review = clear, valuable problem |
 | **Anomaly Detection** | 31 rules across 3 categories (secrets, code exec, SQL injection) |
 | **Human-in-Loop** | Users mark valid/false positive → whitelist updates → system learns |
 | **Before/After Improvement** | Metrics page shows precision improvement (tracked over time) |
 | **Explainability** | Each flag shows: explanation, severity, suggested fix, line number |
 | **Presentation** | Professional CLI, web dashboard, polished UX |
-| **TOTAL** | **Production-ready, ship-worthy |
 
 ---
 
@@ -322,7 +382,7 @@ checkmate/
 - 📦 **PyPI Package**: https://pypi.org/project/checkmate-ai/
 - 🐙 **GitHub Repository**: https://github.com/yourusername/checkmate
 - 📖 **Setup Guide**: [SETUP.md](./SETUP.md)
-- 📊 **Hackathon Rubric Alignment**: See [PRD.md](./PRD.md)
+- 📋 **Product Requirements**: See [PRD.md](./PRD.md)
 
 ---
 

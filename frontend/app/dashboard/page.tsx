@@ -321,7 +321,7 @@ export default function DashboardPage() {
               <div className="relative w-8 h-8">
                 <Image src="/logo.png" alt="CheckMate" fill className="object-contain" />
               </div>
-              <span className="text-gray-400">CheckMate - UCS Hackathon 2026</span>
+              <span className="text-gray-400">CheckMate - AI Code Security Tool</span>
             </div>
             <div className="flex items-center gap-6">
               <Link href="/scan" className="text-gray-400 hover:text-white transition-colors">

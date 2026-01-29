@@ -11,6 +11,7 @@ async def get_dashboard_metrics() -> MetricsResponse:
     """Get aggregated metrics for the dashboard."""
     data = await get_metrics()
 
+    
     rules = [
         RuleMetric(
             rule_id=r["rule_id"],
