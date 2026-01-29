@@ -20,7 +20,7 @@ setup(
     long_description_content_type="text/markdown",
     
     # UPDATED: Main URL
-    url="https://github.com/farhann-saleem/UCS-Hackathon-26",
+    url="https://github.com/farhann-saleem/checkmate-ai",
     license="MIT",
     
     # Package discovery
@@ -71,9 +71,9 @@ setup(
     
     # UPDATED: Correct Links
     project_urls={
-        "Homepage": "https://github.com/farhann-saleem/UCS-Hackathon-26",
-        "Documentation": "https://github.com/farhann-saleem/UCS-Hackathon-26#readme",
-        "Bug Reports": "https://github.com/farhann-saleem/UCS-Hackathon-26/issues",
-        "Source": "https://github.com/farhann-saleem/UCS-Hackathon-26",
+        "Homepage": "https://github.com/farhann-saleem/checkmate-ai",
+        "Documentation": "https://github.com/farhann-saleem/checkmate-ai#readme",
+        "Bug Reports": "https://github.com/farhann-saleem/checkmate-ai/issues",
+        "Source": "https://github.com/farhann-saleem/checkmate-ai",
     },
 )

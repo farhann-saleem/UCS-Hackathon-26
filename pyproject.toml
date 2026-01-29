@@ -42,10 +42,10 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/farhann-saleem/UCS-Hackathon-26"
-Documentation = "https://github.com/farhann-saleem/UCS-Hackathon-26#readme"
-Repository = "https://github.com/farhann-saleem/UCS-Hackathon-26"
-Issues = "https://github.com/farhann-saleem/UCS-Hackathon-26/issues"
+Homepage = "https://github.com/farhann-saleem/checkmate-ai"
+Documentation = "https://github.com/farhann-saleem/checkmate-ai#readme"
+Repository = "https://github.com/farhann-saleem/checkmate-ai"
+Issues = "https://github.com/farhann-saleem/checkmate-ai/issues"
 
 [project.scripts]
 checkmate = "checkmate.cli:cli"

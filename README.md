@@ -266,7 +266,7 @@ pip install checkmate-ai
 checkmate dashboard
 
 # From source
-git clone https://github.com/yourusername/checkmate
+git clone https://github.com/farhann-saleem/checkmate-ai
 cd checkmate
 pip install -e .
 checkmate dashboard
@@ -350,7 +350,7 @@ checkmate/
 ## 🔗 Links
 
 - 📦 **PyPI Package**: https://pypi.org/project/checkmate-ai/
-- 🐙 **GitHub Repository**: https://github.com/yourusername/checkmate
+- 🐙 **GitHub Repository**: https://github.com/farhann-saleem/checkmate-ai
 - 📖 **Setup Guide**: [SETUP.md](./SETUP.md)
 - 📋 **Product Requirements**: See [PRD.md](./PRD.md)
 

@@ -268,7 +268,7 @@ CheckMate is packaged as a professional, installable Python package.
 ### Installation
 ```bash
 # Clone and install
-git clone https://github.com/yourusername/checkmate.git
+git clone https://github.com/farhann-saleem/checkmate-ai.git
 cd checkmate
 pip install -r backend/requirements.txt
 cd dashboard && npm install && npm run build

@@ -51,7 +51,7 @@ Output:
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/checkmate.git
+   git clone https://github.com/farhann-saleem/checkmate-ai.git
    cd checkmate
    ```
 
@@ -314,7 +314,7 @@ checkmate dashboard
 
 1. **Clone and setup**
    ```bash
-   git clone https://github.com/yourusername/checkmate.git
+   git clone https://github.com/farhann-saleem/checkmate-ai.git
    cd checkmate
    python -m venv venv
    source venv/bin/activate
